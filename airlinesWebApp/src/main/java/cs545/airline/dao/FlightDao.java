@@ -130,5 +130,11 @@ public class FlightDao {
 	public List<Flight> findAll() {
 		return entityManager.createQuery("select f from Flight f", Flight.class).getResultList();
 	}
+	
+	public Flight findOneById(long id) {
+		Query query = entityManager.createQuery("select f from Flight f where f.id=:id", Flight.class);
+		query.setParameter("id", id);
+		return (Flight) query.getSingleResult();
+	}
 
 }

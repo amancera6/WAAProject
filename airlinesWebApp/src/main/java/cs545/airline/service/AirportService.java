@@ -65,4 +65,8 @@ public class AirportService {
 	public List<Airport> findAll() {
 		return airportDao.findAll();
 	}
+	
+	public Airport findById(long id) {
+		return airportDao.findOneById(id);
+	}
 }

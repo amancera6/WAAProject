@@ -90,5 +90,13 @@ public class AirportDao {
 	public List<Airport> findAll() {
 		return entityManager.createQuery("select a from Airport a", Airport.class).getResultList();
 	}
+	
+	public Airport findOneById(long id) {
+		Query query = entityManager.createQuery("select a from Airport a where a.id=:id",
+				Airport.class);
+		query.setParameter("id", id);
+
+		return (Airport) query.getSingleResult();
+	}
 
 }

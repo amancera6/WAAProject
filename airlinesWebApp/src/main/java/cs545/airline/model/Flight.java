@@ -107,7 +107,8 @@ public class Flight implements Serializable {
 	}
 
 	public String getDepartureTime() {
-		return tf.format(departureTime);
+		String str = tf.format(departureTime); 
+		return str;
 	}
 
 	public void setDepartureTime(String departureTime) {
@@ -119,7 +120,8 @@ public class Flight implements Serializable {
 	}
 
 	public String getArrivalDate() {
-		return df.format(arrivalDate);
+		String str =  df.format(arrivalDate);
+		return str;
 	}
 
 	public void setArrivalDate(String arrivalDate) {
@@ -172,6 +174,23 @@ public class Flight implements Serializable {
 
 	public void setAirplane(Airplane airplane) {
 		this.airplane = airplane;
+	}
+	
+	public String toString()
+	{
+		String s= "[id=" + id;
+		s+= ",Airline=" + getAirline().getName();
+		s+= ",Airplane=" + getAirplane().getSerialnr();
+		s+= ",AirrivalDate=" + getArrivalDate();
+		s+= ",AirrivalTime=" + getArrivalTime();
+		s+= ",DepartureDate=" + getDepartureDate();
+		s+= ",DepartureTime=" + getDepartureTime();
+		s+= ",Destination=" + getDestination().getName();
+		s+= ",Origin=" + getOrigin().getName();
+		s+= ",FlightNR=" + getFlightnr();
+		s+="]";
+				
+		return s;
 	}
 
 }

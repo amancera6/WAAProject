@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" >
+
+<h:head>
+	<title>Airlines</title>
+</h:head>
+<h:body>
+	
+	<h:form>
+	
+		<h:panelGrid columns="2">
+		
+			<h:outputLabel>Initial Date</h:outputLabel>
+			<h:inputText id="initialDate" binding="#{initialDate}" pt:type="date" />
+			
+			<h:outputLabel>Initial Hour</h:outputLabel>
+			<h:inputText id="initialTime" binding="#{initialTime}" pt:type="time" />
+			
+			<h:outputLabel>End Date</h:outputLabel>
+			<h:inputText id="endDate" binding="#{endDate}" pt:type="date" />
+			
+			<h:outputLabel>End Hour</h:outputLabel>
+			<h:inputText id="endTime" binding="#{endTime}" pt:type="time" />			
+			
+			<h:outputLabel>Airline Name</h:outputLabel>
+			<h:inputText id="airline" binding="#{airline}" />
+			
+			<h:outputLabel>Departure Airport</h:outputLabel>
+			<h:inputText id="departure" binding="#{departure}"/>
+			
+			<h:outputLabel>Destination Airport</h:outputLabel>
+			<h:inputText id="destination" binding="#{destination}" />
+		
+		</h:panelGrid>
+		
+		<h:commandButton action="#{flights.filterFlight(initialDate.value,initialTime.value,endDate.value,endTime.value,airline.value,departure.value,destination.value)}"
+		 value="Buscar"></h:commandButton>
+	
+		
+	</h:form>
+	
+	<h3>Flights</h3>
+		<h:dataTable var="f" value="#{flights.filteredFlightList}">
+			<h:column>
+				<f:facet name="header">Flight Number</f:facet>
+				<h:outputText value="#{f.flightnr}" />
+				
+			</h:column>
+			<h:column>
+				<f:facet name="header">Airline</f:facet>
+				<h:outputText value="#{f.airline.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Departure Date</f:facet>
+				<h:outputText value="#{f.departureDate}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Departure Time</f:facet>
+				<h:outputText value="#{f.departureTime}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Arrival Date</f:facet>
+				<h:outputText value="#{f.arrivalDate}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Arrival Time</f:facet>
+				<h:outputText value="#{f.arrivalTime}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Origin Code</f:facet>
+				<h:outputText value="#{f.origin.airportcode}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Origin Name</f:facet>
+				<h:outputText value="#{f.origin.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Destination Code</f:facet>
+				<h:outputText value="#{f.destination.airportcode}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Destination Name</f:facet>
+				<h:outputText value="#{f.destination.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Airplane Model</f:facet>
+				<h:outputText value="#{f.airplane.model}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Airplane Capacity</f:facet>
+				<h:outputText value="#{f.airplane.capacity}" />
+			</h:column>
+				
+			
+		</h:dataTable>
+
+</h:body>
+</html>

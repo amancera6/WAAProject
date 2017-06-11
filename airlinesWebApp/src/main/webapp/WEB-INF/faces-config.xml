@@ -19,6 +19,14 @@
 			<to-view-id>airlinesCreateAirline.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>show</from-outcome>
+			<to-view-id>showFlights.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 	
 </faces-config>
