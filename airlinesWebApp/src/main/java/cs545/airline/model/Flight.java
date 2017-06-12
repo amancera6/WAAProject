@@ -44,6 +44,7 @@ public class Flight implements Serializable {
 	private Airport destination;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airplane airplane;
+	
 
 	private static DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT,
 			Locale.US);

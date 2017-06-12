@@ -5,10 +5,12 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import cs545.airline.model.Airline;
+import cs545.airline.model.Flight;
 import edu.mum.gf.workaround.JpaUtil;
 
 @Named
@@ -22,7 +24,11 @@ public class AirlineDao {
 
 
 	public void create(Airline airline) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		entityManager.persist(airline);
+		transaction.commit();
+		System.out.println("DAT: "+ airline );
 	}
 
 	public Airline update(Airline airline) {
@@ -30,7 +36,12 @@ public class AirlineDao {
 	}
 
 	public void delete(Airline airline) {
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		entityManager.remove(airline);
+		transaction.commit();
+		System.out.println("DAT: "+ airline );
 	}
 
 	public Airline findOne(long id) {

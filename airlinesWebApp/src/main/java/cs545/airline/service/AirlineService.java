@@ -31,8 +31,14 @@ public class AirlineService {
 		return "airlines";
 	}
 
-	public void delete(Airline airport) {
-		airlineDao.delete(airport);
+	public void delete(Airline airline) {
+		if(airline != null)
+		{
+			for(Flight f: airline.getFlights())
+				if(f!=null)new FlightService().delete(f);
+				
+		}
+		airlineDao.delete(airline);
 	}
 
 	public Airline update(Airline airport) {

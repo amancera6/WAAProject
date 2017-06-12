@@ -59,6 +59,7 @@ public class Airline implements Serializable {
 	}
 
 	public List<Flight> getFlights() {
+		if(flights == null) flights = new ArrayList<>();
 		return Collections.unmodifiableList(flights);
 	}
 	

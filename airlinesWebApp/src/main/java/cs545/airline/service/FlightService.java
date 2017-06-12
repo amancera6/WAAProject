@@ -38,6 +38,8 @@ public class FlightService {
 	}
 
 	public void delete(Flight flight) {
+		if(flightDao == null)
+			flightDao = new FlightDao();
 		flightDao.delete(flight);
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
@@ -22,7 +23,10 @@ public class FlightDao {
 	private EntityManager entityManager = JpaUtil.getEntityManager();
 
 	public void create(Flight flight) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		entityManager.persist(flight);
+		transaction.commit();
 	}
 
 	public Flight update(Flight flight) {
@@ -30,7 +34,10 @@ public class FlightDao {
 	}
 
 	public void delete(Flight flight) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
 		entityManager.remove(flight);
+		transaction.commit();
 	}
 
 	public Flight findOne(long id) {
