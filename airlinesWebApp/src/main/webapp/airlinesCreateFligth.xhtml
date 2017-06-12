@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" >
 
 <h:head>
 	<title>Airlines</title>
@@ -15,29 +16,37 @@
 		<h3>Airline - Flights</h3>
 		
 		<h:outputLabel>#{airlineEntity.name}</h:outputLabel>
-			
-		<h:panelGrid columns="2">
 		
-			<h:outputLabel>Fligth Nr</h:outputLabel>
-			<h:inputText value="#{flightEntity.flightnr}" />
-			
-			<h:outputLabel>Departure Date</h:outputLabel>
-			<h:inputText value="#{flightEntity.departureDate}" />
-			
-			<h:outputLabel>Departure Time</h:outputLabel>
-			<h:inputText value="#{flightEntity.departureTime}" />
-			
-			<h:outputLabel>Arrival Date</h:outputLabel>
-			<h:inputText value="#{flightEntity.arrivalDate}" />
-			
-			<h:outputLabel>Arrival Time</h:outputLabel>
-			<h:inputText value="#{flightEntity.arrivalTime}" />
-			
-		</h:panelGrid>
 		
-		           					
-		<h:commandButton action="airlinesCreateFligth" value="Añadir"></h:commandButton>
+		  
+		  <h:dataTable var="f" value="#{flights.all}">
+				<h:column>
+					<f:facet name="header">Number</f:facet>
+					<h:outputText value="#{f.flightnr}"  />					
+				</h:column>
+				<h:column>
+					<f:facet name="header">Arrival Date</f:facet>
+					<h:outputText value="#{f.arrivalDate}"  />					
+				</h:column>
+				<h:column>
+					<f:facet name="header">Departure Date</f:facet>
+					<h:outputText value="#{f.departureDate}"  />					
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Add</f:facet>
+					<h:panelGrid columns="2">
+
+						<h:commandButton value="Add" action="#{airlineEntity.addFlight(f)}" />
+
+					</h:panelGrid>
+				</h:column>
+								
+			</h:dataTable>
+			
+		  	<h:commandButton value="Finish" action="#{airlines.create(airlineEntity)}" />
 	</h:form>
+	
 
 </h:body>
 </html>

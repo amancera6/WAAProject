@@ -1,6 +1,7 @@
 package cs545.airline.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class Airline implements Serializable {
 	@OneToMany(mappedBy = "airline")
 	@OrderBy("departureDate, departureTime")
 	private List<Flight> flights;
+	
 
 	/* Constructors */
 	public Airline() {
@@ -61,20 +63,30 @@ public class Airline implements Serializable {
 	}
 	
 	/* Collections Methods */
-	public boolean addFlight(Flight flight) {
+	public String addFlight(Flight flight) {
+		if(flights == null)
+			flights = new ArrayList<>();
 		boolean success =  (!flights.contains(flight)) && (flights.add(flight));
 		if (success) {
 			flight.setAirline(this);
 		}
-		return success;
+		//this.number = flights.size();
+		return null;
 	}
 
-	public boolean removeFlight(Flight flight) {
-		boolean success = false;
+	public String removeFlight(Flight flight) {
+		if(flights == null)
+			return null;
 		if (flights.remove(flight)) {
 			flight.setAirline(null);
-			success = true;
 		}
-		return success;
+		return null;
+	}
+	
+	public String addItem(String number,String initialDate,String initialTime,String endDate,String endTime,
+			Airline airline,Airport departure,Airport destination)
+	{
+		System.out.println("R");
+		return null;
 	}
 }

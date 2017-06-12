@@ -1,8 +1,11 @@
 package cs545.airline.model;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,9 +14,13 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+@Named("airportEntity")
+@SessionScoped
 @Entity
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"airportcode"}))
-public class Airport {
+public class Airport implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private long id;
